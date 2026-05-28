@@ -161,7 +161,7 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text == "📋 Контакты")
 async def show_contacts(message: types.Message):
     """Показывает контакты с кликабельными номерами телефонов"""
-
+    print("DEBUG: Контакты обработчик вызван!")
     response = "📋 <b>Справочник отделов</b>\n\n"
 
     for contact_key, contact in CONTACTS.items():
