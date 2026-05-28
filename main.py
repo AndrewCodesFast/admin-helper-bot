@@ -156,7 +156,7 @@ async def cmd_start(message: types.Message):
     )
 
 
-# ─── КОНТАКТЫ с кликабельными номерами ──────────────────────────────────────
+# ─── КОНТАКТЫ с кликабельными номерами ─────────────────────────────────────
 
 @dp.message(F.text == "📋 Контакты")
 async def show_contacts(message: types.Message):
