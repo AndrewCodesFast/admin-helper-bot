@@ -57,20 +57,15 @@ def log_request(user_id: int, user_name: str, request_type: str, content: str):
 # Как получить file_id: см. инструкцию в RAILWAY_SETUP.md
 
 DOCUMENTS = {
-    "metodichka": {
-        "name": "Методические указания к ВКР",
-        "file_id": os.getenv("FILE_ID_METODICHKA", None),  # Получи это из Telegram!
-        "description": "Полные методические указания по выполнению выпускной квалификационной работы"
+    "fz210": {
+        "name": "Федеральный закон N 210-ФЗ",
+        "file_id": os.getenv("FILE_ID_FZ_210", None),  # Получи это из Telegram!
+        "description": "Федеральный закон от 27.07.2010 N 210-ФЗ"
     },
-    "diploma": {
-        "name": "Образец диплома",
-        "file_id": os.getenv("FILE_ID_DIPLOMA", None),
-        "description": "Пример оформления диплома ВКР"
-    },
-    "regulations": {
-        "name": "Положение о ВКР",
-        "file_id": os.getenv("FILE_ID_REGULATIONS", None),
-        "description": "Положение о выполнении выпускной квалификационной работы"
+    "fz131": {
+        "name": "Федеральный закон N 131-ФЗ",
+        "file_id": os.getenv("FILE_ID_FZ_131", None),
+        "description": "Федеральный закон от 06.10.2003 N 131-ФЗ"
     }
 }
 
@@ -216,8 +211,7 @@ async def show_documents(message: types.Message):
     if available_count == 0:
         response = (
             "❌ <b>На данный момент документов нет</b>\n\n"
-            "Администратор еще не загрузил документы.\n"
-            "См. инструкцию в RAILWAY_SETUP.md для загрузки документов."
+            "Администратор еще не загрузил документы."
         )
         await message.answer(response, parse_mode="HTML")
         return
@@ -321,7 +315,6 @@ async def meetings(message: types.Message):
     response = (
         "📅 <b>Расписание совещаний</b>\n\n"
         f"{FAKE_DB['meetings']}\n\n"
-        "<i>Уточняйте актуальное расписание у администратора</i>"
     )
 
     await message.answer(response, parse_mode="HTML")
@@ -360,9 +353,7 @@ async def upload_doc_command(message: types.Message):
         f"📄 <b>Имя:</b> {doc.file_name}\n"
         f"📊 <b>Размер:</b> {doc.file_size / 1024 / 1024:.2f} МБ\n\n"
         f"🔑 <b>file_id:</b>\n<code>{file_id}</code>\n\n"
-        f"✏️ <b>Добавь в .env на Railway:</b>\n"
-        f"<code>FILE_ID_METODICHKA={file_id}</code>\n\n"
-        f"(Замени FILE_ID_METODICHKA на нужное имя переменной)"
+        f"✏️ <b>Добавь в .env на Railway."
     )
 
     await message.answer(response, parse_mode="HTML")
