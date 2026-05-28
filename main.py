@@ -164,15 +164,13 @@ async def show_contacts(message: types.Message):
 
     response = "📋 <b>Справочник отделов</b>\n\n"
 
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[])
-
     for contact_key, contact in CONTACTS.items():
         response += f"<b>{contact['name']}</b>\n"
         response += f"   Кабинет: {contact['room']}\n"
+        response += f"   Телефон: {contact['phone']}\n\n"
 
-    response += "\n<i>Нажмите на номер ниже, чтобы позвонить или отправить СМС:</i>\n\n"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[])
 
-    # Добавляем кнопки с номерами
     for contact_key, contact in CONTACTS.items():
         button = InlineKeyboardButton(
             text=f"☎️ {contact['name']}: {contact['phone']}",
