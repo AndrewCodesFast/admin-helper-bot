@@ -160,25 +160,14 @@ async def cmd_start(message: types.Message):
 
 @dp.message(F.text == "📋 Контакты")
 async def show_contacts(message: types.Message):
-    """Показывает контакты с кликабельными номерами телефонов"""
-    print("DEBUG: Контакты обработчик вызван!")
     response = "📋 <b>Справочник отделов</b>\n\n"
 
     for contact_key, contact in CONTACTS.items():
         response += f"<b>{contact['name']}</b>\n"
         response += f"   Кабинет: {contact['room']}\n"
-        response += f"   Телефон: {contact['phone']}\n\n"
+        response += f"   📞 {contact['phone']}\n\n"
 
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[])
-
-    for contact_key, contact in CONTACTS.items():
-        button = InlineKeyboardButton(
-            text=f"☎️ {contact['name']}: {contact['phone']}",
-            url=f"tel:{contact['phone']}"
-        )
-        keyboard.inline_keyboard.append([button])
-
-    await message.answer(response, reply_markup=keyboard, parse_mode="HTML")
+    await message.answer(response, parse_mode="HTML")
 
 
 # ─── ДОКУМЕНТЫ с отправкой файлов (через file_id) ───────────────────────────
