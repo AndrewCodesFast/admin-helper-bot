@@ -155,10 +155,7 @@ async def cmd_start(message: types.Message):
         reply_markup=kb.get_main_menu()
     )
 
-@dp.message(F.text)
-async def debug(message: types.Message):
-    print(f"Получено: '{message.text}'")
-    await message.answer(f"Вы написали: {message.text}")
+
 # ─── КОНТАКТЫ с кликабельными номерами ──────────────────────────────────────
 
 @dp.message(F.text == "📋 Контакты")
